@@ -1,0 +1,42 @@
+<html>
+<head>
+<style>
+#div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+<script type="text/javascript" src="../dist/caman.full.js"></script>
+<script type="text/javascript">
+// If Caman is executed the <img> block will turn into a canvas and it won't be possible to change the image again. So Caman has to be executed after the image is dropped.
+// readAsDataURL needs an object as an argument, if you give it the filename it doesn't work. dataTransfer.files[0] is an object of the type file and it can be given as an argument to refered function.
+// $('#image') didn't work. it said $ is not defined
+// elementbyid().attr didn't work because the method doesn't exist, so the attribute src is changed directly instead
+// After the image is loaded (.src = ...) it is then processed by caman and rendered, thus converting <img> into a canvas
+Caman.DEBUG = ('console' in window);
+function drop(ev){
+	ev.preventDefault();
+	var f = ev.dataTransfer.files[0];
+	var fopen = new FileReader();
+	fopen.onload = function(ev2){
+		console.dir(ev2);
+		document.getElementById('image').src=ev2.target.result;
+		Caman("#image",function(){
+			this.channels({
+				green: 80
+			});
+			this.render();
+		});
+	};
+	fopen.readAsDataURL(f);
+	
+}
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+</script>
+</head>
+<body>
+<h1>project</h1>
+<div id="div1" ondrop="drop(event)" ondragover="event.preventDefault()"></div>
+<img id="image" src="image.jpg">
+<img id="original" src="image.jpg" ondragstart="drag(event)">
+</body>
+</html>
