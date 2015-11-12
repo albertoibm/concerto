@@ -1,0 +1,66 @@
+a,
+a:focus,
+a:hover {
+	color:#fff;
+	text-decoration:none;
+}
+.row {
+	padding-bottom:10px;
+}
+.navbar-inverse .navbar-brand {
+	color:#fff;
+}
+input[type=file]{
+	appearance:button;
+}
+.btn-success.focus,.btn-success:focus,.btn-success:hover{
+	color:#fff;
+	background-color:#e48a00;
+	border-color:#255625;
+}
+
+.btn-success {
+	background-color:#c19252;
+	border-color:#c19252;
+}
+body {
+	padding-top:50px;
+	padding-bottom: 20px;
+	background-color:#336699;
+}
+img {
+	float:right;
+	margin:30px;
+	padding:10px;
+	background-color:white;
+	box-shadow: 0 0 5px black;
+}
+#image {
+	max-width:600;
+	max-height:600;
+}
+.inner {
+	margin:auto;
+	width:60%;
+}
+.center {
+	margin:auto;
+	width:70%;
+	height:50%;
+	vertical-align:70%;
+	color:#757575;
+}
+#div1 {
+	position: absolute;
+	top:200px;
+	right:30%;
+	width:40%;
+	height:33%;
+	padding:10px;
+	margin:10px;
+	border:2px solid white;
+	background: white;
+	box-shadow: 0px 0px 25px black;
+	visibility:hidden;
+	z-index:1;
+}
