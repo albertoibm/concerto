@@ -1,17 +1,8 @@
-a,
-a:focus,
-a:hover {
-	color:#fff;
-	text-decoration:none;
-}
 .row {
 	padding-bottom:10px;
 }
 .navbar-inverse .navbar-brand {
 	color:#fff;
-}
-input[type=file]{
-	appearance:button;
 }
 .btn-success.focus,.btn-success:focus,.btn-success:hover{
 	color:#fff;
@@ -28,33 +19,20 @@ body {
 	padding-bottom: 20px;
 	background-color:#336699;
 }
-img {
-	float:right;
+#image {
 	margin:30px;
 	padding:10px;
 	background-color:white;
 	box-shadow: 0 0 5px black;
-}
-#image {
 	max-width:600;
 	max-height:600;
-}
-.inner {
-	margin:auto;
-	width:60%;
-}
-.center {
-	margin:auto;
-	width:70%;
-	height:50%;
-	vertical-align:70%;
-	color:#757575;
+	z-index:1;
 }
 #div1 {
 	position: absolute;
 	top:200px;
 	right:30%;
-	width:40%;
+	width:400px;
 	height:33%;
 	padding:10px;
 	margin:10px;

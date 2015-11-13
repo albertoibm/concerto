@@ -50,22 +50,25 @@ function load(ev){
 }
 function drop(ev){
 	ev.preventDefault();
-	var dropcage = document.getElementById('div1');
+//	var dropcage = document.getElementById('div1');
 	var f = ev.dataTransfer.files[0];
 	var inputfile = document.getElementById('file');
 	inputfile.files[0] = f;
 	display(f);
-	dropcage.style.visibility = 'hidden';
+//	dropcage.style.visibility = 'hidden';
 }
 function drag(ev) {
+	undisplay();
+	console.log("Drag");
 //    alert('felt it!');
     ev.preventDefault();
-    var dropcage = document.getElementById('div1');
-	dropcage.style.top = 200 + window.pageYOffset + "px";
+//    var dropcage = document.getElementById('div1');
+//	dropcage.style.top = 200 + window.pageYOffset + "px";
 //    console.dir(dropcage);
-    dropcage.style.visibility = 'visible';
+//    dropcage.style.visibility = 'visible';
 }
 function nodrag(ev){
+	console.log("No drag");
 	ev.preventDefault();
 	document.getElementById("div1").style.visibility = "hidden";
 }
