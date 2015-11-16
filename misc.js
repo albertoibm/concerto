@@ -33,7 +33,7 @@ function prepareCrop(ev){
 }
 function getMousePos(element, ev){
 	var el = element.getBoundingClientRect();
-	return {x:ev.clientX - el.left, y:ev.clientY - el.top};
+	return {x:ev.clientX - el.left - 10, y:ev.clientY - el.top - 10};
 }
 function showMenu(){
 	var controls = document.getElementsByClassName("controls");
