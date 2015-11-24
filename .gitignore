@@ -3,3 +3,5 @@ bootstrap.min.css
 bootstrap.min.js
 numeric-1.2.6.js
 numeric-1.2.6.min.js
+numeric.js
+*.swp
