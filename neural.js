@@ -19,8 +19,7 @@ var NN = function NN(sizes){
 	this.layers = sizes.length;
 	this.biases = [];
 	this.weights = [];
-	this.epsilon = -1;
-	this.bepsilon = -1;
+	this.epsilon = -5;
 	for(i = 0; i < sizes.length - 1; i++){
 		this.biases = this.biases.concat(numeric.random([1,sizes[i+1]]));
 		this.weights = this.weights.concat(new Matrix(sizes[i+1],sizes[i]));
@@ -50,7 +49,7 @@ var NN = function NN(sizes){
 			dEdw = numeric.dot( numeric.transpose([dEdx]), [ys[ys.length-1 - i -1]]);
 			weight = this.weights[this.weights.length-1 - i].values;
 			dw = dw.concat({values:numeric.mul(this.epsilon, dEdw)});
-			db = db.concat({values:numeric.mul(this.bepsilon, dEdx)});
+			db = db.concat({values:numeric.mul(this.epsilon, dEdx)});
 			dEdy = numeric.dot( dEdx, weight);
 		}
 		return {w:dw, b:db};
@@ -78,7 +77,7 @@ if(require.main === module){
 	console.log(out+" output neurons");
 	wa =new NN([ins, mid, out]);
 	
-	for(var j=0;j<100;j++){
+	for(var j=0;j<64;j++){
 		wa.learn([32, 34, 150],1);
 		wa.learn([13, 23, 2],0);
 		wa.learn([150,2,20],0);
