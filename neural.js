@@ -77,16 +77,8 @@ if(require.main === module){
 	console.log("inputs, "+mid+" hidden neurons and");
 	console.log(out+" output neurons");
 	wa =new NN([ins, mid, out]);
-	console.log("weights");
-	for(var i=0; i < wa.weights.length;i++){
-		console.dir(wa.weights[i].values);
-	}
-	console.log("biases");
-	console.dir(wa.biases);
-	console.log(wa.feedforward([32,34,150]));
 	
 	for(var j=0;j<100;j++){
-		console.log(wa.feedforward([32,34,150]));
 		wa.learn([32, 34, 150],1);
 		wa.learn([13, 23, 2],0);
 		wa.learn([150,2,20],0);
@@ -98,24 +90,10 @@ if(require.main === module){
 		wa.learn([0,255,255],0);
 		wa.learn([255,255,255],0);
 		wa.learn([100,80,240],1);
-		console.log("weights");
-		for(var i=0; i < wa.weights.length;i++){
-			console.dir(wa.weights[i].values);
-		}
-		console.log("biases");
-		console.dir(wa.biases);
 	}
-	console.log("\n\nLearning (0,0,255) as blue");
-	wa.learn([0,0,255],1);
-	console.log("weights");
-	for(var i=0; i < wa.weights.length;i++){
-		console.dir(wa.weights[i].values);
-	}
-	console.log("biases");
-	console.dir(wa.biases);
 	console.log("feedforward");
-	console.log(wa.feedforward([32,34,150]));
-	console.log(wa.feedforward([255,0,0]));
-	console.log(wa.feedforward([0,255,0]));
-	console.log(wa.feedforward([0,0,255]));
+	console.log("Dark Blue "+wa.feedforward([32,34,150]));
+	console.log("Red "+wa.feedforward([255,0,0]));
+	console.log("Green "+wa.feedforward([0,255,0]));
+	console.log("Blue "+wa.feedforward([0,0,255]));
 }
