@@ -4,7 +4,34 @@
 // $('#image') didn't work. it said $ is not defined
 // elementbyid().attr didn't work because the method doesn't exist, so the attribute src is changed directly instead
 // After the image is loaded (.src = ...) it is then processed by caman and rendered, thus converting <img> into a canvas
-
+function analize(ev){
+	console.log("Finding canvas element");
+	var canvas = document.getElementById("image");
+	var context = canvas.getContext("2d");
+	console.log("Getting image pixels");
+	var img = context.getImageData(0,0,canvas.width,canvas.height);
+	console.log("Creating neural network");
+	var analizer = new NN([3, 5, 1]);
+	analizer.defaultTraining();
+	var total = 0;
+	console.log(analizer.feedforward([32,34,150]));
+	for(var i = 0; i < img.data.length; i += 4){
+		r = img.data[i];
+		g = img.data[i+1];
+		b = img.data[i+2];
+		res = analizer.feedforward([r,g,b])[0];
+		
+		if( res > 0.2){
+			img.data[i] = 200;
+			img.data[i+2] = 200;
+			total++;
+		}
+	}
+	console.log(res);
+	context.putImageData(img, 0, 0);
+	
+	alert((100.0*total/(img.width*img.height))+"% of the image matches the description");
+}
 var topLeft, bottomRigth;
 function crop(canvas, topLeft, bottomRight){
 //	var img = canvas.getAttirbute("data");
@@ -51,7 +78,6 @@ function hideMenu(){
 
 }
 function canvas_load(src){
-	console.log(src);
 	var canvas = document.getElementById('image');
 	var context = canvas.getContext('2d');
 	var img = new Image();
@@ -79,7 +105,6 @@ function display(f){
 	if(f.type.substring(0,5)=='image'){
 		var fopen = new FileReader();
 		fopen.onload = function(ev2){
-			console.log(ev2);
 			canvas_load(ev2.target.result);
 		};
 		fopen.readAsDataURL(f);
@@ -98,7 +123,6 @@ function drop(ev){
 	var f = ev.dataTransfer.files[0];
 	var inputfile = document.getElementById('file');
 	inputfile.files[0] = f;
-	console.log(f);
 	display(f);
 }
 function drag(ev) {

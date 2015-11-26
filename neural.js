@@ -68,28 +68,34 @@ var NN = function NN(sizes){
 			else this.learn(negative[i-positive.length],0);
 		}
 	}
+	this.filter = function(r,g,b){
+		return this.feedforward([r,g,b]) > 0.5;
+	}
+	this.defaultTraining = function(){
+		for(var j=0;j<200;j++){
+			this.learn([32, 34, 150],1);
+			this.learn([13, 23, 2],0);
+			this.learn([150,2,20],0);
+			this.learn([123,200,80],0);
+			this.learn([0,0,255],1);
+			this.learn([255,0,0],0);
+			this.learn([0,255,0],0);
+			this.learn([255,0,255],0);
+			this.learn([0,255,255],0);
+			this.learn([255,255,255],0);
+			this.learn([100,80,240],1);
+		}
+	}
 }
 if(require.main === module){
+	// Used fot tests off the browser
 	var numeric = require('./numeric-1.2.6');
 	var ins = 3, mid = 5, out = 1;
 	console.log("Creating new neural network with "+ins);
 	console.log("inputs, "+mid+" hidden neurons and");
 	console.log(out+" output neurons");
 	wa =new NN([ins, mid, out]);
-	
-	for(var j=0;j<64;j++){
-		wa.learn([32, 34, 150],1);
-		wa.learn([13, 23, 2],0);
-		wa.learn([150,2,20],0);
-		wa.learn([123,200,80],0);
-		wa.learn([0,0,255],1);
-		wa.learn([255,0,0],0);
-		wa.learn([0,255,0],0);
-		wa.learn([255,0,255],0);
-		wa.learn([0,255,255],0);
-		wa.learn([255,255,255],0);
-		wa.learn([100,80,240],1);
-	}
+	wa.defaultTraining();	
 	console.log("feedforward");
 	console.log("Dark Blue "+wa.feedforward([32,34,150]));
 	console.log("Red "+wa.feedforward([255,0,0]));
