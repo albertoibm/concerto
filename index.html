@@ -14,7 +14,14 @@
 
 	<!-- Custom styles for this template -->
     <link href="stylesheet.css" rel="stylesheet">
+	<script src="numeric.js"></script>
 	<script type="text/javascript" src="misc.js"></script>
+	<script type="text/javascript" src="neural.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(event) {
+			undisplay();
+		});
+	</script>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -24,7 +31,7 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body onload="undisplay()">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -37,15 +44,18 @@
           <a class="navbar-brand" href="#">Concerto</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
-			<ul class="nav navbar-nav">
+			<ul id="menu" class="nav navbar-nav">
 				<li class="active">
 					<a>Home</a>
 				</li>
-				<li>
+				<li class="controls">
 					<a href="#" onclick="undisplay(event)">Clear image</a>
 				</li>
-				<li>
+				<li class="controls">
 					<a href="#" role="button" onclick="analize()">Analize &raquo;</a>
+				</li>
+				<li class="controls">
+					<a href="#" role="button" onclick="prepareCrop(event)">Crop</a>
 				</li>
 				<li>
 				</li>
@@ -66,7 +76,7 @@
 	<div class="container">
 	  <div class="row">
 		  <div class="col-md-5">
-			<img id="image" src="noimage.jpg" draggable="false" onload="chksz(this)" ondragover="drag(event)" ondrop="drop(event)">
+			  <canvas id="image" draggable="false" ondragenter="drag(event)" ondragover="event.preventDefault()" ondrop="drop(event)"></canvas>
 				<input id ="file" class="btn btn-primary btn-lg" href="#" type="file" onchange="load(event)"></input>
 			<div class="row">
 			</div>
